@@ -18,7 +18,7 @@ logger = logging.getLogger("hospital_erp")
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.PROJECT_VERSION,
-    description="Comprehensive Hospital ERP + CRM Multi-tenant Platform API",
+    description="Comprehensive Hospital ERP + CRM Multi-tenant Platform API (33 Modules)",
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
     docs_url="/docs",
     redoc_url="/redoc"
@@ -48,11 +48,11 @@ async def app_exception_handler(request: Request, exc: AppException):
 
 @app.on_event("startup")
 def on_startup():
-    logger.info("Initializing Hospital ERP + CRM Database...")
+    logger.info("Initializing Hospital ERP + CRM Complete 33-Domain Architecture Database...")
     db = SessionLocal()
     try:
         init_db(db)
-        logger.info("Hospital ERP + CRM Ready.")
+        logger.info("Hospital ERP + CRM Production Platform Ready.")
     finally:
         db.close()
 
@@ -63,16 +63,17 @@ def health_check():
         "status": "healthy",
         "service": settings.PROJECT_NAME,
         "version": settings.PROJECT_VERSION,
-        "environment": settings.ENVIRONMENT
+        "environment": settings.ENVIRONMENT,
+        "total_modules": 33
     }
 
-# Phase 1 Routers
+# Phase 1 Routers (01, 02)
 from app.modules.auth.router import router as auth_router
 from app.modules.users.router import router as users_router, roles_router
 from app.modules.organization.router import router as org_router
 from app.modules.audit.router import router as audit_router
 
-# Phase 2 Routers
+# Phase 2 Routers (03 - 09)
 from app.modules.patients.router import router as patients_router
 from app.modules.doctors.router import router as doctors_router
 from app.modules.appointments.router import router as appointments_router
@@ -81,7 +82,7 @@ from app.modules.ipd.router import router as ipd_router
 from app.modules.clinical.router import router as clinical_router
 from app.modules.nursing.router import router as nursing_router
 
-# Phase 3 Routers
+# Phase 3 Routers (10 - 15)
 from app.modules.emergency.router import router as emergency_router
 from app.modules.ot.router import router as ot_router
 from app.modules.pharmacy.router import router as pharmacy_router
@@ -89,26 +90,33 @@ from app.modules.laboratory.router import router as laboratory_router
 from app.modules.radiology.router import router as radiology_router
 from app.modules.blood_bank.router import router as blood_bank_router
 
-# Phase 4 Routers
+# Phase 4 Routers (16 - 19)
 from app.modules.billing.router import router as billing_router
 from app.modules.insurance.router import router as insurance_router
 from app.modules.inventory.router import router as inventory_router
 from app.modules.procurement.router import router as procurement_router
 
-# Phase 5 Routers
+# Phase 5 Routers (20 - 23)
 from app.modules.hr.router import router as hr_router
 from app.modules.roster.router import router as roster_router
 from app.modules.medical_records.router import router as medical_records_router
 from app.modules.documents.router import router as documents_router
 
-# Phase 6 Routers
+# Phase 6 Routers (24 - 28)
 from app.modules.crm.router import router as crm_router
 from app.modules.communication.router import router as communication_router
 from app.modules.marketing.router import router as marketing_router
 from app.modules.feedback.router import router as feedback_router
 from app.modules.telemedicine.router import router as telemedicine_router
 
-# Include All Routers
+# Phase 7 Routers (29 - 33)
+from app.modules.cdss.router import router as cdss_router
+from app.modules.analytics.router import router as analytics_router
+from app.modules.reports.router import router as reports_router
+from app.modules.compliance.router import router as compliance_router
+from app.modules.enterprise.router import router as enterprise_router
+
+# Include All Routers into Modular Monolith
 app.include_router(auth_router, prefix=settings.API_V1_STR)
 app.include_router(users_router, prefix=settings.API_V1_STR)
 app.include_router(roles_router, prefix=settings.API_V1_STR)
@@ -140,3 +148,8 @@ app.include_router(communication_router, prefix=settings.API_V1_STR)
 app.include_router(marketing_router, prefix=settings.API_V1_STR)
 app.include_router(feedback_router, prefix=settings.API_V1_STR)
 app.include_router(telemedicine_router, prefix=settings.API_V1_STR)
+app.include_router(cdss_router, prefix=settings.API_V1_STR)
+app.include_router(analytics_router, prefix=settings.API_V1_STR)
+app.include_router(reports_router, prefix=settings.API_V1_STR)
+app.include_router(compliance_router, prefix=settings.API_V1_STR)
+app.include_router(enterprise_router, prefix=settings.API_V1_STR)
