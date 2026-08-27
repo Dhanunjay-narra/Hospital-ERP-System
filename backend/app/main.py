@@ -101,6 +101,13 @@ from app.modules.roster.router import router as roster_router
 from app.modules.medical_records.router import router as medical_records_router
 from app.modules.documents.router import router as documents_router
 
+# Phase 6 Routers
+from app.modules.crm.router import router as crm_router
+from app.modules.communication.router import router as communication_router
+from app.modules.marketing.router import router as marketing_router
+from app.modules.feedback.router import router as feedback_router
+from app.modules.telemedicine.router import router as telemedicine_router
+
 # Include All Routers
 app.include_router(auth_router, prefix=settings.API_V1_STR)
 app.include_router(users_router, prefix=settings.API_V1_STR)
@@ -128,3 +135,8 @@ app.include_router(hr_router, prefix=settings.API_V1_STR)
 app.include_router(roster_router, prefix=settings.API_V1_STR)
 app.include_router(medical_records_router, prefix=settings.API_V1_STR)
 app.include_router(documents_router, prefix=settings.API_V1_STR)
+app.include_router(crm_router, prefix=settings.API_V1_STR)
+app.include_router(communication_router, prefix=settings.API_V1_STR)
+app.include_router(marketing_router, prefix=settings.API_V1_STR)
+app.include_router(feedback_router, prefix=settings.API_V1_STR)
+app.include_router(telemedicine_router, prefix=settings.API_V1_STR)
