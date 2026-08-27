@@ -13,6 +13,9 @@ class LabService:
 
     @staticmethod
     def create_test(db: Session, test_in: LabTestCatalogCreate) -> LabTestCatalog:
+        existing = db.query(LabTestCatalog).filter(LabTestCatalog.test_code == test_in.test_code).first()
+        if existing:
+            return existing
         test = LabTestCatalog(**test_in.model_dump())
         db.add(test)
         db.commit()

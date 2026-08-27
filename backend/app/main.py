@@ -66,13 +66,13 @@ def health_check():
         "environment": settings.ENVIRONMENT
     }
 
-# Import Phase 1 Routers
+# Phase 1 Routers
 from app.modules.auth.router import router as auth_router
 from app.modules.users.router import router as users_router, roles_router
 from app.modules.organization.router import router as org_router
 from app.modules.audit.router import router as audit_router
 
-# Import Phase 2 Routers
+# Phase 2 Routers
 from app.modules.patients.router import router as patients_router
 from app.modules.doctors.router import router as doctors_router
 from app.modules.appointments.router import router as appointments_router
@@ -81,13 +81,19 @@ from app.modules.ipd.router import router as ipd_router
 from app.modules.clinical.router import router as clinical_router
 from app.modules.nursing.router import router as nursing_router
 
-# Import Phase 3 Routers
+# Phase 3 Routers
 from app.modules.emergency.router import router as emergency_router
 from app.modules.ot.router import router as ot_router
 from app.modules.pharmacy.router import router as pharmacy_router
 from app.modules.laboratory.router import router as laboratory_router
 from app.modules.radiology.router import router as radiology_router
 from app.modules.blood_bank.router import router as blood_bank_router
+
+# Phase 4 Routers
+from app.modules.billing.router import router as billing_router
+from app.modules.insurance.router import router as insurance_router
+from app.modules.inventory.router import router as inventory_router
+from app.modules.procurement.router import router as procurement_router
 
 # Include All Routers
 app.include_router(auth_router, prefix=settings.API_V1_STR)
@@ -108,3 +114,7 @@ app.include_router(pharmacy_router, prefix=settings.API_V1_STR)
 app.include_router(laboratory_router, prefix=settings.API_V1_STR)
 app.include_router(radiology_router, prefix=settings.API_V1_STR)
 app.include_router(blood_bank_router, prefix=settings.API_V1_STR)
+app.include_router(billing_router, prefix=settings.API_V1_STR)
+app.include_router(insurance_router, prefix=settings.API_V1_STR)
+app.include_router(inventory_router, prefix=settings.API_V1_STR)
+app.include_router(procurement_router, prefix=settings.API_V1_STR)
