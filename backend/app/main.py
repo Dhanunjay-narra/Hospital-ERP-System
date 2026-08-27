@@ -71,6 +71,13 @@ from app.modules.auth.router import router as auth_router
 from app.modules.users.router import router as users_router, roles_router
 from app.modules.organization.router import router as org_router
 from app.modules.audit.router import router as audit_router
+from app.modules.patients.router import router as patients_router
+from app.modules.doctors.router import router as doctors_router
+from app.modules.appointments.router import router as appointments_router
+from app.modules.opd.router import router as opd_router
+from app.modules.ipd.router import router as ipd_router
+from app.modules.clinical.router import router as clinical_router
+from app.modules.nursing.router import router as nursing_router
 
 # Include Routers
 app.include_router(auth_router, prefix=settings.API_V1_STR)
@@ -78,3 +85,10 @@ app.include_router(users_router, prefix=settings.API_V1_STR)
 app.include_router(roles_router, prefix=settings.API_V1_STR)
 app.include_router(org_router, prefix=settings.API_V1_STR)
 app.include_router(audit_router, prefix=settings.API_V1_STR)
+app.include_router(patients_router, prefix=settings.API_V1_STR)
+app.include_router(doctors_router, prefix=settings.API_V1_STR)
+app.include_router(appointments_router, prefix=settings.API_V1_STR)
+app.include_router(opd_router, prefix=settings.API_V1_STR)
+app.include_router(ipd_router, prefix=settings.API_V1_STR)
+app.include_router(clinical_router, prefix=settings.API_V1_STR)
+app.include_router(nursing_router, prefix=settings.API_V1_STR)
