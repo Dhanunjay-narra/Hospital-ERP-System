@@ -95,6 +95,12 @@ from app.modules.insurance.router import router as insurance_router
 from app.modules.inventory.router import router as inventory_router
 from app.modules.procurement.router import router as procurement_router
 
+# Phase 5 Routers
+from app.modules.hr.router import router as hr_router
+from app.modules.roster.router import router as roster_router
+from app.modules.medical_records.router import router as medical_records_router
+from app.modules.documents.router import router as documents_router
+
 # Include All Routers
 app.include_router(auth_router, prefix=settings.API_V1_STR)
 app.include_router(users_router, prefix=settings.API_V1_STR)
@@ -118,3 +124,7 @@ app.include_router(billing_router, prefix=settings.API_V1_STR)
 app.include_router(insurance_router, prefix=settings.API_V1_STR)
 app.include_router(inventory_router, prefix=settings.API_V1_STR)
 app.include_router(procurement_router, prefix=settings.API_V1_STR)
+app.include_router(hr_router, prefix=settings.API_V1_STR)
+app.include_router(roster_router, prefix=settings.API_V1_STR)
+app.include_router(medical_records_router, prefix=settings.API_V1_STR)
+app.include_router(documents_router, prefix=settings.API_V1_STR)
