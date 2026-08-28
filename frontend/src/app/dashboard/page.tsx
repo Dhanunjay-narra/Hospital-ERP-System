@@ -29,8 +29,17 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = typeof window !== "undefined" ? localStorage.getItem("access_token") : null;
+        if (!token) {
+          setLoading(false);
+          return;
+        }
         const bedsData = await ApiClient.get("/organization/beds");
-        setBeds(bedsData || []);
+        if (Array.isArray(bedsData)) {
+          setBeds(bedsData);
+        } else if (bedsData?.items) {
+          setBeds(bedsData.items);
+        }
       } catch (e) {
         console.error("Failed to load dashboard data", e);
       } finally {
