@@ -23,7 +23,7 @@ def list_report_templates(current_user: User = Depends(get_current_user)) -> Lis
 @router.get("/generate/{report_id}")
 def generate_report(
     report_id: str,
-    format: str = Query("CSV", regex="^(CSV|PDF)$"),
+    format: str = Query("CSV", pattern="^(CSV|PDF)$"),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
