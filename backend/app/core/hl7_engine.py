@@ -15,7 +15,7 @@ class HL7MessageEngine:
         ts = datetime.datetime.utcnow().strftime("%Y%m%d%H%M%S")
         msg_ctrl_id = f"MSG-{ts}"
         segments = [
-            f"MSH|^~\&|APEX_HIS|APEX_MAIN|EXT_LIS|CENTRAL|{ts}||ADT^A01|{msg_ctrl_id}|P|2.5.1",
+            f"MSH|^~\\&|APEX_HIS|APEX_MAIN|EXT_LIS|CENTRAL|{ts}||ADT^A01|{msg_ctrl_id}|P|2.5.1",
             f"EVN|A01|{ts}",
             f"PID|1||{patient_uhid}^^^APEX_HOSPITAL^MR||{patient_name}||{dob_yyyymmdd}|{gender}",
             f"PV1|1|I|{room_bed}||||{admitting_doctor}^^^DR|||||||||||{ts}",
@@ -28,7 +28,7 @@ class HL7MessageEngine:
         ts = datetime.datetime.utcnow().strftime("%Y%m%d%H%M%S")
         msg_ctrl_id = f"LAB-{ts}"
         segments = [
-            f"MSH|^~\&|APEX_LIS|LAB_DEPT|APEX_EMR|CLINICAL|{ts}||ORU^R01|{msg_ctrl_id}|P|2.5.1",
+            f"MSH|^~\\&|APEX_LIS|LAB_DEPT|APEX_EMR|CLINICAL|{ts}||ORU^R01|{msg_ctrl_id}|P|2.5.1",
             f"PID|1||{patient_uhid}^^^APEX_HOSPITAL^MR",
             f"OBR|1|{order_num}|{order_num}|{test_code}^{test_name}^LN|||{ts}",
             f"OBX|1|NM|{test_code}^{test_name}^LN||{result_value}|{units}|{ref_range}|{abnormal_flag}|||F|||{ts}",
